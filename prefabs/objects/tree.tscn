@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/objects/trees/tree.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "idle"
+length = 1.44
+loop = true
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.72, 0.84, 0.96, 1.08, 1.2, 1.32 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
+[node name="tree" type="StaticBody2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -5, -4, 5, -4, 11, -1, 11, 3, 5, 6, -5, 6, -12, 3, -12, -1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -15 )
+texture = ExtResource( 1 )
+hframes = 7
+
+[node name="animation" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 6 )
+anims/idle = SubResource( 7 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 0, -15 )
+amount = 2
+lifetime = 5.0
+lifetime_randomness = 0.4
+emission_shape = 2
+emission_rect_extents = Vector2( 5, 10 )
+gravity = Vector2( 0, 3 )
+initial_velocity = 7.0
+angular_velocity = 2.0
+color = Color( 0.129412, 0.298039, 0.137255, 0.756863 )

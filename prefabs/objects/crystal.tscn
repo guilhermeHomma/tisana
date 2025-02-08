@@ -1,0 +1,163 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sprites/objects/crystal/crystal.png" type="Texture" id=1]
+[ext_resource path="res://sprites/ligths/alice-light.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("crystal:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ceil:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -32 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("crystal/Light2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.8 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "open"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("crystal:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -11 ), Vector2( 0, -13 ), Vector2( 0, -16 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ceil:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -29 ), Vector2( 0, -31 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("crystal/Light2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.9 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "openning"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("ceil:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -6 ), Vector2( 0, -15 ), Vector2( 0, -29 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("crystal:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -5 ), Vector2( 0, -8 ), Vector2( 0, -11 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("crystal/Light2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.8 ]
+}
+
+[node name="crystal" type="StaticBody2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="collision" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 1 )
+polygon = PoolVector2Array( -11, 3, 0, 9, 11, 3, 0, -3 )
+
+[node name="base" type="Sprite" parent="."]
+position = Vector2( 0, 2 )
+texture = ExtResource( 1 )
+vframes = 3
+frame = 2
+
+[node name="crystal" type="Sprite" parent="."]
+position = Vector2( 0, -16 )
+texture = ExtResource( 1 )
+vframes = 3
+frame = 1
+
+[node name="Light2D" type="Light2D" parent="crystal"]
+position = Vector2( 0, 1 )
+texture = ExtResource( 2 )
+color = Color( 0.247059, 0.682353, 0.713726, 1 )
+energy = 0.8
+range_height = 40.0
+
+[node name="ceil" type="Sprite" parent="."]
+position = Vector2( 0, -32 )
+texture = ExtResource( 1 )
+vframes = 3
+
+[node name="animation" type="AnimationPlayer" parent="."]
+autoplay = "open"
+anims/RESET = SubResource( 6 )
+anims/open = SubResource( 7 )
+anims/openning = SubResource( 8 )

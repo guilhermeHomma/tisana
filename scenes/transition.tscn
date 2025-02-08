@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scripts/transition.gd" type="Script" id=1]
+[ext_resource path="res://scripts/controller/transition.gd" type="Script" id=1]
 [ext_resource path="res://sfx/transition/transition-in.wav" type="AudioStream" id=2]
 [ext_resource path="res://sfx/transition/transition-out.wav" type="AudioStream" id=3]
 
@@ -69,9 +69,7 @@ anims/y-transition-down = SubResource( 3 )
 
 [node name="audio_in" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -4.0
 pitch_scale = 0.7
 
 [node name="audio_out" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -4.0
